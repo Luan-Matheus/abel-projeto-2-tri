@@ -2,33 +2,30 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Login Profissional</title>
+    <title>Página de Login</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav>
         <div class="logo">MeuSite</div>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-        </ul>
+        <ul><li><a href="index.html">Início</a></li></ul>
     </nav>
 
     <div class="container">
         <div class="box">
             <h2>Login</h2>
             <div id="error" class="error-msg">Nome ou senha incorretos!</div>
-            
             <form id="loginForm">
-                <input type="text" id="user" placeholder="Nome de usuário" required>
-                <input type="password" id="pass" placeholder="Senha" required>
+                <input type="text" id="user" placeholder="Usuário (admin)" required>
+                <input type="password" id="pass" placeholder="Senha (123)" required>
                 
-                <!-- ESTE LINK ABRE O ARQUIVO esqueci.html -->
+                <!-- PORTA PARA O ESQUECI SENHA -->
                 <a href="esqueci.html" class="link">Esqueci minha senha</a>
                 
                 <button type="submit">Entrar</button>
                 
-                <!-- ESTE LINK ABRE O ARQUIVO cadastro.html -->
-                <p>Não tem conta? <a href="cadastro.html">Cadastre-se aqui</a></p>
+                <!-- PORTA PARA O CADASTRO -->
+                <p>Não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
             </form>
         </div>
     </div>
@@ -39,7 +36,7 @@
             const u = document.getElementById('user').value;
             const p = document.getElementById('pass').value;
             if(u === "admin" && p === "123") {
-                alert("Login realizado!");
+                alert("Login realizado com sucesso!");
             } else {
                 document.getElementById('error').style.display = "block";
             }
