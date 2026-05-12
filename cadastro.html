@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Nova Conta</title>
+    <!-- Liga com o seu arquivo de estilos -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navegação (Igual à do Login) -->
+    <nav>
+        <div class="logo">MeuApp</div>
+        <ul>
+            <li><a href="index.html">Início</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="box">
+            <h2>Criar Conta</h2>
+            <p style="margin-bottom: 15px; color: #606770; font-size: 14px;">É rápido e fácil.</p>
+            
+            <form id="registerForm">
+                <input type="text" id="newName" placeholder="Nome Completo" required>
+                
+                <input type="email" id="newEmail" placeholder="E-mail ou número de celular" required>
+                
+                <input type="password" id="newPass" placeholder="Nova senha" required>
+                
+                <div style="text-align: left; font-size: 12px; color: #777; margin: 10px 0;">
+                    Ao clicar em Cadastrar, você concorda com nossos Termos e Política de Dados.
+                </div>
+
+                <!-- Botão com cor diferente para destacar que é cadastro -->
+                <button type="submit" style="background-color: #42b72a;">Cadastrar</button>
+            </form>
+
+            <div class="footer-link" style="margin-top: 20px; border-top: 1px solid #ddd; padding-top: 15px;">
+                <a href="index.html" style="color: #1877f2; font-weight: bold; text-decoration: none;">Já tem uma conta?</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Aqui você capturaria os dados para salvar
+            const nome = document.getElementById('newName').value;
+            
+            alert("Parabéns " + nome + "! Sua conta foi criada com sucesso.");
+            
+            // Redireciona de volta para o login após o cadastro
+            window.location.href = "index.html";
+        });
+    </script>
+
+</body>
+</html>

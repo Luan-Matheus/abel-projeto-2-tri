@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Senha</title>
+    <!-- Conecta com o mesmo CSS dos outros arquivos -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <div class="logo">MeuApp</div>
+        <ul>
+            <li><a href="index.html">Início</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="box">
+            <h2>Encontre sua conta</h2>
+            <p style="margin-bottom: 20px; color: #606770; font-size: 14px; line-height: 1.4;">
+                Insira seu e-mail ou número de celular para procurar a sua conta e redefinir sua senha.
+            </p>
+            
+            <form id="forgotForm">
+                <input type="email" id="recoveryEmail" placeholder="E-mail de recuperação" required>
+                
+                <button type="submit">Enviar código</button>
+                
+                <div style="margin-top: 15px;">
+                    <a href="index.html" style="text-decoration: none; color: #606770; font-size: 14px;">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('forgotForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('recoveryEmail').value;
+            
+            alert("Um link de recuperação foi enviado para: " + email);
+            
+            // Redireciona para o login após o envio
+            window.location.href = "index.html";
+        });
+    </script>
+
+</body>
+</html>
