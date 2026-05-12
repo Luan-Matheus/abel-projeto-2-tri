@@ -2,51 +2,66 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recuperar Senha</title>
-    <!-- Conecta com o mesmo CSS dos outros arquivos -->
     <link rel="stylesheet" href="style.css">
+    <!-- Script que faz a ligação com o EmailJS -->
+    <script type="text/javascript" src="https://jsdelivr.net"></script>
 </head>
 <body>
 
     <nav>
-        <div class="logo">MeuApp</div>
-        <ul>
-            <li><a href="index.html">Início</a></li>
-        </ul>
+        <div class="logo">MeuSite</div>
+        <ul><li><a href="index.html">Início</a></li></ul>
     </nav>
 
     <div class="container">
         <div class="box">
-            <h2>Encontre sua conta</h2>
-            <p style="margin-bottom: 20px; color: #606770; font-size: 14px; line-height: 1.4;">
-                Insira seu e-mail ou número de celular para procurar a sua conta e redefinir sua senha.
-            </p>
+            <h2>Recuperar Senha</h2>
+            <p style="margin-bottom: 15px; font-size: 14px;">Enviaremos um código de 6 dígitos para o seu e-mail.</p>
             
             <form id="forgotForm">
-                <input type="email" id="recoveryEmail" placeholder="E-mail de recuperação" required>
-                
-                <button type="submit">Enviar código</button>
-                
-                <div style="margin-top: 15px;">
-                    <a href="index.html" style="text-decoration: none; color: #606770; font-size: 14px;">Cancelar</a>
-                </div>
+                <input type="email" id="recoveryEmail" placeholder="Seu e-mail" required>
+                <button type="submit" id="btn-enviar">Enviar Código Real</button>
+                <p><a href="index.html">Cancelar e Voltar</a></p>
             </form>
         </div>
     </div>
 
-    <script>
-        document.getElementById('forgotForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('recoveryEmail').value;
-            
-            alert("Um link de recuperação foi enviado para: " + email);
-            
-            // Redireciona para o login após o envio
-            window.location.href = "index.html";
+    <script type="text/javascript">
+        // 1. AQUI VOCÊ COLA A "PUBLIC KEY" QUE ESTÁ NA ABA ACCOUNT DO SITE
+        (function() {
+            emailjs.init("SUA_PUBLIC_KEY_AQUI"); 
+        })();
+
+        document.getElementById('forgotForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const btn = document.getElementById('btn-enviar');
+            btn.innerText = 'Enviando...';
+            btn.disabled = true;
+
+            const emailUsuario = document.getElementById('recoveryEmail').value;
+
+            // GERA O NÚMERO ALEATÓRIO DE 6 DÍGITOS
+            const codigoAleatorio = Math.floor(100000 + Math.random() * 900000);
+
+            // Dados que serão enviados para o template do site
+            const templateParams = {
+                email: emailUsuario,      // Deve ser igual ao {{email}} no site
+                passcode: codigoAleatorio, // Deve ser igual ao {{passcode}} no site
+                time: "15 minutos"        // Deve ser igual ao {{time}} no site
+            };
+
+            // 2. COLOQUE O SEU TEMPLATE ID AQUI (O SERVICE ID JÁ ESTÁ CERTO)
+            emailjs.send('service_h7q73vm', 'SEU_TEMPLATE_ID_AQUI', templateParams)
+                .then(function() {
+                    alert('Código enviado! Verifique seu e-mail: ' + emailUsuario);
+                    window.location.href = "index.html";
+                }, function(error) {
+                    alert('Erro ao enviar: ' + JSON.stringify(error));
+                    btn.innerText = 'Enviar Código Real';
+                    btn.disabled = false;
+                });
         });
     </script>
-
 </body>
 </html>
