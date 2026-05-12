@@ -2,9 +2,10 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recuperar Senha</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Script que faz a ligação com o EmailJS -->
+    <!-- Script oficial para o e-mail funcionar -->
     <script type="text/javascript" src="https://jsdelivr.net"></script>
 </head>
 <body>
@@ -28,9 +29,9 @@
     </div>
 
     <script type="text/javascript">
-        // 1. AQUI VOCÊ COLA A "PUBLIC KEY" QUE ESTÁ NA ABA ACCOUNT DO SITE
+        // Inicializa o EmailJS com a sua chave
         (function() {
-            emailjs.init("SUA_PUBLIC_KEY_AQUI"); 
+            emailjs.init("gVenqLFfY44rkEvoD"); 
         })();
 
         document.getElementById('forgotForm').addEventListener('submit', function(event) {
@@ -41,23 +42,23 @@
 
             const emailUsuario = document.getElementById('recoveryEmail').value;
 
-            // GERA O NÚMERO ALEATÓRIO DE 6 DÍGITOS
+            // Gera o código aleatório de 6 dígitos
             const codigoAleatorio = Math.floor(100000 + Math.random() * 900000);
 
-            // Dados que serão enviados para o template do site
+            // Dados que vão para o seu template de OTP
             const templateParams = {
-                email: emailUsuario,      // Deve ser igual ao {{email}} no site
-                passcode: codigoAleatorio, // Deve ser igual ao {{passcode}} no site
-                time: "15 minutos"        // Deve ser igual ao {{time}} no site
+                email: emailUsuario,      
+                passcode: codigoAleatorio, 
+                time: "15 minutos"        
             };
 
-            // 2. COLOQUE O SEU TEMPLATE ID AQUI (O SERVICE ID JÁ ESTÁ CERTO)
-            emailjs.send('service_h7q73vm', 'SEU_TEMPLATE_ID_AQUI', templateParams)
+            // Envia o e-mail usando seus IDs configurados
+            emailjs.send('service_h7q73vm', 'template_blpsyni', templateParams)
                 .then(function() {
-                    alert('Código enviado! Verifique seu e-mail: ' + emailUsuario);
+                    alert('SUCESSO! O código ' + codigoAleatorio + ' foi enviado para ' + emailUsuario);
                     window.location.href = "index.html";
                 }, function(error) {
-                    alert('Erro ao enviar: ' + JSON.stringify(error));
+                    alert('Erro ao enviar. Verifique se o serviço de e-mail está ativo no site do EmailJS.');
                     btn.innerText = 'Enviar Código Real';
                     btn.disabled = false;
                 });
