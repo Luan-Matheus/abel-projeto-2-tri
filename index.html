@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Login</title>
+    <style>
+        /* CSS - Estilização */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Barra de Navegação */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: #ffffff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #1877f2;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+        }
+
+        /* Container Principal */
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-box {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #1c1e21;
+        }
+
+        /* Mensagem de Erro */
+        #error-message {
+            display: none;
+            background-color: #ffebe9;
+            color: #d73a49;
+            border: 1px solid rgba(215, 58, 73, 0.4);
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .field {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #606770;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #dddfe2;
+            border-radius: 6px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #1877f2;
+        }
+
+        .forgot-pass {
+            display: block;
+            margin-top: 5px;
+            font-size: 13px;
+            color: #1877f2;
+            text-decoration: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #1877f2;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #166fe5;
+        }
+
+        .signup-area {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #dddfe2;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .signup-area a {
+            color: #1877f2;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">SuaMarca</div>
+        <ul>
+            <li><a href="#">Início</a></li>
+            <li><a href="#">Sobre</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <div class="login-box">
+            <h2>Acessar Conta</h2>
+            
+            <!-- Div para a mensagem de erro -->
+            <div id="error-message">Nome ou senha incorretos!</div>
+
+            <form id="loginForm">
+                <div class="field">
+                    <label for="user">Nome de usuário</label>
+                    <input type="text" id="user" placeholder="Ex: joao_silva" required>
+                </div>
+
+                <div class="field">
+                    <label for="pass">Senha</label>
+                    <input type="password" id="pass" placeholder="••••••••" required>
+                    <a href="#" class="forgot-pass">Esqueci minha senha</a>
+                </div>
+
+                <button type="submit">Entrar</button>
+
+                <div class="signup-area">
+                    Ainda não tem conta? <a href="#">Cadastre-se aqui</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript para validar o login
+        const form = document.getElementById('loginForm');
+        const errorDiv = document.getElementById('error-message');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede a página de recarregar
+            
+            const usuario = document.getElementById('user').value;
+            const senha = document.getElementById('pass').value;
+
+            // Simulação de login (Usuário: admin | Senha: 123)
+            if (usuario === "admin" && senha === "123") {
+                alert("Login realizado com sucesso!");
+                errorDiv.style.display = "none";
+            } else {
+                // Mostra a mensagem de erro se estiver errado
+                errorDiv.style.display = "block";
+            }
+        });
+    </script>
+
+</body>
+</html>
